@@ -1,0 +1,8 @@
+<launch>
+
+    <node pkg="channel_publisher" name="channel_publisher" type="channel_publisher.py" output="screen">
+    </node>
+
+    <include file="/opt/ros/noetic/share/mavros/launch/apm.launch" />	
+
+</launch>

@@ -1,9 +1,11 @@
+#! /usr/bin/python3
+
 from geometry_msgs.msg import Twist
 from mavros_msgs.msg import RCIn
 import rospy
 import sys, time
 
-rospy.init_node('mhr_rc_node')
+rospy.init_node('channel_publisher')
 
 rate = rospy.Rate(10)    # 10 Hz
 
@@ -14,7 +16,7 @@ def sub_callback(data):
     vel_msg.linear.y = data.channels[0]   # left right steering
     vel_msg.linear.z = data.channels[5]   # up down of stepper (3 pos switch)
 
-    rospy.loginfo(rospy.get_caller_id() + "Publishing velocity...")
+    rospy.loginfo(rospy.get_caller_id() + " Publishing velocity to /mhr/cmd_vel...")
 
     pub.publish(vel_msg)
 
